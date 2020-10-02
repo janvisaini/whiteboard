@@ -16,11 +16,11 @@ root=Tk()
 
 ## variable defining####
 
-colour="blue"
+colour=choice(["blue","black","red","green","yellow","grey","orange"])
 
 
 
-#========Theme Bacground========#
+#======colours selector======#
 
 def changeBg():
 
@@ -31,7 +31,7 @@ def changeBg():
          canvas.config(background=hexstr)
 
 
-
+#========Theme Bacground========#
 def Light():
 
         root.title("Alvin's Whiteboard")
@@ -94,21 +94,18 @@ def paint(event, selected_colour):
 
     '''Draws a line following the user mouse cursor'''        
 
-    x1,y1=event.x,event.y
+    x1,y1=event.x+1,event.y+1
 
-    x2, y2 = event.x-1, event.y
+    x2, y2 = event.x-2, event.y-2
 
     canvas.create_line(x1,y1,x2,y2, fill=selected_colour, width=s1.get(),capstyle=ROUND,smooth=True)
 
     
-
-
-
 # basic size and name of GUI
 
-can_width=1040
+can_width=1100
 
-can_height=1790
+can_height=1800
 
 root.geometry(f"{can_width}x{can_height}")
 
@@ -120,12 +117,9 @@ root.title("Alvin's board")
 
 #======width scale=====#
 
-s1=Scale(root,from_=8,to=25,orient=HORIZONTAL)
+s1=Scale(root,from_=4,to=50,orient=HORIZONTAL)
 
 s1.pack(anchor="n",ipadx=840,side="top")
-
-
-
 
 
 #========creating Canvas===========#
@@ -141,9 +135,6 @@ canvas.bind("<Motion>", lambda event: paint(event,selected_colour=colour))
 #=========creating main menu=========#
 
 mainMenu=Menu(root)
-
-
-
 
 
 #========creating sub menus==========#
@@ -184,6 +175,8 @@ m2.add_command(label=" ",background="white",command=lambda : canvas.config(backg
 
 m2.add_command(label=" ",background="black",command=lambda : canvas.config(background="black"))
 
+m2.add_comment(label=" ", background="blue", command=lambda : canvas.config(background="blue"))
+
 m2.add_command(label="Other",command=changeBg)
 
 
@@ -191,16 +184,12 @@ m2.add_command(label="Other",command=changeBg)
 #======adding command in menu m3====#
 
 m3.add_command(label="Clear canvas",command=lambda: canvas.delete("all"))
-
+m3.add_command(label="Erase", command= lambda event : canvas.delete(event.x,event.y)
 
 
 #=========configing Menu===========#
 
 root.config(menu=mainMenu)
-
-
-
-
 
 #========running mainloop========#
 
