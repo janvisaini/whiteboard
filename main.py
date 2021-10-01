@@ -48,8 +48,8 @@ def black():
 def paint(event, selected_colour):
     '''Draws a line following the user mouse cursor'''
     global x0,y0
-    x1,y1=event.x,event.y
-    if x0!=0 and y0!=0:
+    x1,y1 = event.x,event.y
+    if x0 != 0 and y0 != 0:
     	canvas.create_line(x0,y0,x1,y1, fill=selected_colour, width=s1.get(),capstyle=ROUND,smooth=True)
     x0,y0=x1,y1
 
@@ -93,6 +93,7 @@ m1.add_command(label="        ",background="white",command=white)
 m1.add_command(label="        ",background="blue",command=blue)
 m1.add_command(label="        ",background="red",command=red)
 m1.add_command(label="        ",background="black",command=black)
+m1.add_command(label="        ",background="yellow",command=lambda : "yellow")
 m1.add_command(label="Other",command=changeFg)
 
 #====adding command in menu m2=====#
