@@ -80,9 +80,9 @@ mainMenu=Menu(root)
 
 
 #========creating sub menus==========#
-m1=Menu(mainMenu)
-m2=Menu(mainMenu)
-m3=Menu(mainMenu)
+m1=Menu(mainMenu, tearoff=False)
+m2=Menu(mainMenu, tearoff=False)
+m3=Menu(mainMenu, tearoff=False)
 
 mainMenu.add_cascade(label="Colour",menu=m1)
 mainMenu.add_cascade(label="Theme",menu=m2)
